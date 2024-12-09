@@ -1,0 +1,195 @@
+/* Basic reset for margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Background video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-video video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+/* Scrollable content container */
+.scrollable-content {
+    position: relative;
+    height: 2000px; /* Adjust based on how long you want the scrollable content */
+}
+
+/* Stars Container */
+.stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Star Styles */
+.star {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: swing 3s infinite ease-in-out;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.7)); /* Golden glow */
+    transition: filter 0.3s ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 223, 0, 0.8); /* Glowing golden effect */
+    z-index: 10;
+    pointer-events: all;
+}
+
+/* Star hover effect */
+.star:hover {
+    filter: brightness(1.5) drop-shadow(0 0 30px rgba(255, 223, 0, 1)); /* Brighter golden glow */
+}
+
+/* Message Box Styling */
+#message-popup {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    transform: translateY(-100%);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 20;
+}
+
+/* Show message popup */
+#message-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+
+/* Big Star and Message */
+.big-star {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 2s ease-in-out;
+}
+
+/* Big star expansion */
+/* Big Star reveal */
+.big-star.reveal {
+    width: 800px;  /* Increase the size of the star */
+    height: 800px; /* Increase the size of the star */
+    transform: scale(1);  /* Make sure the star is fully revealed */
+    top: 50%;  /* Vertically center */
+    left: 50%; /* Horizontally center */
+    transform: translate(-50%, -50%); /* Centering technique */
+    background: radial-gradient(circle, #f7f7f7, #f7f7f7 40%, #ffcc00);
+    opacity: 0.9; /* Lower opacity for subtle glowing effect */
+    transition: all 2s ease-in-out; /* Ensure smooth scaling and color transition */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Big Message */
+
+.big-message {
+    position: absolute;
+    top: 52.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: transparent;
+    font-size: 1rem; /* Adjust font size */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: white;
+    background: -webkit-linear-gradient(45deg, #ff007f, #ff0000);
+    -webkit-background-clip: text;
+    color: transparent;
+    max-width: 38%; /* Ensure text does not overflow */
+    text-align: center;
+    z-index: 55;
+    animation: typing 3s steps(30) 1s forwards, glow 1.5s ease-in-out infinite alternate; /* Typing and glowing effect */
+}
+
+/* Typing animation */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Glowing Animation for Stars */
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 223, 0, 0.7), 0 0 20px rgba(255, 223, 0, 0.7), 0 0 30px rgba(255, 223, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 223, 0, 1), 0 0 30px rgba(255, 223, 0, 1), 0 0 50px rgba(255, 223, 0, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 223, 0, 0.7), 0 0 20px rgba(255, 223, 0, 0.7), 0 0 30px rgba(255, 223, 0, 0.7);
+    }
+}
+
+/* Message Box Styling */
+#message-popup {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    transform: translateY(-100%);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 20; /* Make sure it's on top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Show message popup */
+#message-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Star Swing Animation */
+@keyframes swing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}

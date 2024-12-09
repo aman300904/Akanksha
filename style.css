@@ -1,0 +1,187 @@
+/* Basic Reset */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    display: flex;
+    justify-content: space-between; /* Space between two sections */
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Left Side: Boy Animation and Text */
+.first {
+    display: flex;
+    flex-direction: row; /* Align horizontally */
+    align-items: center; /* Center align both video and text */
+}
+
+#text {
+    font-size: 65px;
+    font-weight: bolder;
+    font-family: 'Fredoka One', cursive;
+    background: linear-gradient(90deg, #ff0000, #ff7300, #00ffee, #2b65ff, #8000ff, #ff0080, #ff7300, #ff0000);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glitter 4s infinite linear;
+    margin-left: -55px; /* Space between text and avatar */
+    position: relative;
+    top: -165px; /* Move "Hii!" upwards */
+}
+
+/* Avatar styling */
+.av video {
+    border: none; /* Removed border */
+    border-radius: 0; /* No border radius */
+}
+
+/* Right Side: Message Box */
+.message-box {
+    width: 500px;  /* Reduced width to original size */
+    padding: 20px;
+    border: 4px solid #ff69b4; /* Pink border */
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #ff69b4; /* Change text color to pink */
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px; /* Original font size */
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-shadow: none; /* Removed text shadow */
+    animation: sparkle-border 2s infinite;
+    position: absolute;
+    top: 50%; /* Positioned more downward */
+    right: 20px;
+    transform: translateY(-50%); /* Vertically center */
+    line-height: 1.6;
+}
+
+/* Glitter Effect */
+@keyframes glitter {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter Border Animation */
+@keyframes sparkle-border {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
+}
+
+/* Cursor Effect */
+.message-box::after {
+    content: "|"; /* Blinking Cursor */
+    display: inline-block;
+    animation: blink 0.7s step-start infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+/* Body Styling for Cursor Trail */
+
+
+/* Style for Cursor Trail */
+.cursor-trail {
+    position: absolute;
+    font-size: 16px; /* Small font size */
+    font-family: 'Arial', sans-serif;
+    color: #FF6347; /* Random colors will be applied through JS */
+    font-weight: bold;
+    animation: trail-animation 3s ease-out; /* Adjusted the duration for a slower effect */
+    pointer-events: none; /* Prevent cursor interference */
+}
+
+@keyframes trail-animation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5); /* Shrinks the text */
+    }
+}
+
+
+/* Make the font color change randomly */
+@keyframes color-change {
+    0% { color: #ff0000; } /* Red */
+    20% { color: #ff7300; } /* Orange */
+    40% { color: #ffeb00; } /* Yellow */
+    60% { color: #47ff00; } /* Green */
+    80% { color: #00ffee; } /* Cyan */
+}
+
+/* Apply color change to each text trail element */
+.cursor-trail:nth-child(even) {
+    animation: trail-animation 1s ease forwards, color-change 1s infinite alternate;
+}
+
+
+/* Heart Pop Out */
+@keyframes heart-pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Heart Element */
+.heart {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 120px;  /* Increased font size */
+    color: red;
+    animation: heart-pop 1s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Confetti */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg); /* Start from the top */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg); /* Fall to the bottom */
+        opacity: 0;
+    }
+}
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b; /* Confetti color */
+    position: absolute;
+    top: -10px; /* Position them at the top */
+    left: calc(100% * var(--random-x)); /* Random horizontal position */
+    animation: confetti-fall 2s linear infinite; /* Animation to fall */
+    border-radius: 50%;
+    animation-delay: calc(0.1s * var(--i)); /* Randomize the delay */
+    opacity: 0.8;
+}
+
+.confetti:nth-child(even) {
+    background-color: #ff4081; /* Alternate colors */
+}
+
+.confetti:nth-child(odd) {
+    background-color: #4caf50;
+}
